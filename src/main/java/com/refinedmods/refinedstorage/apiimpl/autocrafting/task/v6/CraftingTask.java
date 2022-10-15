@@ -221,8 +221,7 @@ public class CraftingTask implements ICraftingTask, NodeListener {
     @Override
     public int onTrackedInsert(ItemStack stack, int size) {
         for (Node node : this.nodes.all()) {
-            if (node instanceof ProcessingNode) {
-                ProcessingNode processing = (ProcessingNode) node;
+            if (node instanceof ProcessingNode processing) {
 
                 int needed = processing.getNeeded(stack);
                 if (needed > 0) {
@@ -257,8 +256,7 @@ public class CraftingTask implements ICraftingTask, NodeListener {
     @Override
     public int onTrackedInsert(FluidStack stack, int size) {
         for (Node node : this.nodes.all()) {
-            if (node instanceof ProcessingNode) {
-                ProcessingNode processing = (ProcessingNode) node;
+            if (node instanceof ProcessingNode processing) {
 
                 int needed = processing.getNeeded(stack);
 

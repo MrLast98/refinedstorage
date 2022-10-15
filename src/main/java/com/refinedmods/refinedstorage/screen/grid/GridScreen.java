@@ -86,8 +86,7 @@ public class GridScreen extends BaseScreen<GridContainerMenu> implements IScreen
             }
         });
 
-        if (grid instanceof GridNetworkNode && grid.getGridType() == GridType.PATTERN) {
-            GridNetworkNode node = (GridNetworkNode) grid;
+        if (grid instanceof GridNetworkNode node && grid.getGridType() == GridType.PATTERN) {
             node.getProcessingMatrix().addListener((handler, slot, reading) -> updatePatternOffset = true);
             node.getProcessingMatrixFluids().addListener((handler, slot, reading) -> updatePatternOffset = true);
         }

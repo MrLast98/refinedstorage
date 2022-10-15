@@ -39,8 +39,7 @@ public class GuiContainerHandler implements IGuiContainerHandler<AbstractContain
         mouseX -= screen.getGuiLeft();
         mouseY -= screen.getGuiTop();
 
-        if (screen instanceof GridScreen) {
-            GridScreen grid = (GridScreen) screen;
+        if (screen instanceof GridScreen grid) {
 
             if (!grid.getSearchField().isFocused() && grid.isOverSlotArea(mouseX, mouseY)) {
                 boolean inRange = grid.getSlotNumber() >= 0 && grid.getSlotNumber() < grid.getView().getStacks().size();

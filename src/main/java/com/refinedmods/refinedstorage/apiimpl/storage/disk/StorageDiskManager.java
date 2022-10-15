@@ -42,11 +42,9 @@ public class StorageDiskManager extends RSSavedData implements IStorageDiskManag
     @Nullable
     @Override
     public IStorageDisk getByStack(ItemStack disk) {
-        if (!(disk.getItem() instanceof IStorageDiskProvider)) {
+        if (!(disk.getItem() instanceof IStorageDiskProvider provider)) {
             return null;
         }
-
-        IStorageDiskProvider provider = (IStorageDiskProvider) disk.getItem();
 
         if (!provider.isValid(disk)) {
             return null;

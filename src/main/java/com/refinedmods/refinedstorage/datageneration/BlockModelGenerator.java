@@ -2,6 +2,7 @@ package com.refinedmods.refinedstorage.datageneration;
 
 import com.refinedmods.refinedstorage.RS;
 import com.refinedmods.refinedstorage.RSBlocks;
+import com.refinedmods.refinedstorage.block.AIControllerBlock;
 import com.refinedmods.refinedstorage.block.ControllerBlock;
 import com.refinedmods.refinedstorage.block.DetectorBlock;
 import com.refinedmods.refinedstorage.block.NetworkNodeBlock;
@@ -12,10 +13,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import org.jline.utils.Log;
 
 public class BlockModelGenerator extends BlockStateProvider {
     private static final ResourceLocation BOTTOM = new ResourceLocation(RS.ID, "block/bottom");
-
+    private final String blockPath = "block/";
     private final BlockModels models;
 
     public BlockModelGenerator(DataGenerator generator, String id, ExistingFileHelper existingFileHelper) {
@@ -33,6 +35,10 @@ public class BlockModelGenerator extends BlockStateProvider {
         genNorthCutoutModels(RSBlocks.CRAFTER_MANAGER, false);
         genNorthCutoutModels(RSBlocks.DISK_MANIPULATOR, true);
         genControllerModels(RSBlocks.CONTROLLER);
+
+        // AI
+        genAIControllerModels(RSBlocks.AI_CONTROLLER);
+
         genControllerModels(RSBlocks.CREATIVE_CONTROLLER);
         genCrafterModels();
         genCubeAllCutoutModels(RSBlocks.RELAY);
@@ -51,12 +57,12 @@ public class BlockModelGenerator extends BlockStateProvider {
             models.wirelessTransmitterBlock(block, state -> {
                 if (Boolean.FALSE.equals(state.getValue(NetworkNodeBlock.CONNECTED))) {
                     return models.createWirelessTransmitterModel(
-                        "block/" + folderName + "/disconnected",
+                        blockPath+ folderName + "/disconnected",
                         resourceLocation(folderName, "cutouts/disconnected")
                     );
                 } else {
                     ModelFile model = models.createWirelessTransmitterModel(
-                        "block/" + folderName + "/" + color,
+                        blockPath+ folderName + "/" + color,
                         resourceLocation(folderName, "cutouts/" + color)
                     );
 
@@ -72,15 +78,16 @@ public class BlockModelGenerator extends BlockStateProvider {
             Block block = registryObject.get();
             String folderName = RSBlocks.DETECTOR.get(ColorMap.DEFAULT_COLOR).getId().getPath();
 
+
             models.simpleBlockStateModel(block, state -> {
                 if (Boolean.FALSE.equals(state.getValue(DetectorBlock.POWERED))) {
                     return models.createDetectorModel(
-                        "block/" + folderName + "/off",
+                        blockPath+ folderName + "/off",
                         resourceLocation(folderName, "cutouts/off")
                     );
                 } else {
                     ModelFile model = models.createDetectorModel(
-                        "block/" + folderName + "/" + color,
+                        blockPath+ folderName + "/" + color,
                         resourceLocation(folderName, "cutouts/" + color)
                     );
 
@@ -96,10 +103,11 @@ public class BlockModelGenerator extends BlockStateProvider {
             Block block = registryObject.get();
             String folderName = RSBlocks.SECURITY_MANAGER.get(ColorMap.DEFAULT_COLOR).getId().getPath();
 
+
             models.horizontalRSBlock(block, state -> {
                 if (Boolean.FALSE.equals(state.getValue(NetworkNodeBlock.CONNECTED))) {
                     return models.createCubeCutoutModel(
-                        "block/" + folderName + "/disconnected",
+                        blockPath+ folderName + "/disconnected",
                         BOTTOM,
                         BOTTOM,
                         resourceLocation(folderName, "top"),
@@ -115,7 +123,7 @@ public class BlockModelGenerator extends BlockStateProvider {
                     );
                 } else {
                     ModelFile model = models.createCubeCutoutModel(
-                        "block/" + folderName + "/" + color,
+                        blockPath+ folderName + "/" + color,
                         BOTTOM,
                         BOTTOM,
                         resourceLocation(folderName, "top"),
@@ -142,17 +150,18 @@ public class BlockModelGenerator extends BlockStateProvider {
             Block block = registryObject.get();
             String folderName = blockMap.get(ColorMap.DEFAULT_COLOR).getId().getPath();
 
+
             models.simpleBlockStateModel(block, state -> {
                 if (Boolean.FALSE.equals(state.getValue(NetworkNodeBlock.CONNECTED))) {
                     return models.createCubeAllCutoutModel(
-                        "block/" + folderName + "/disconnected",
+                        blockPath+ folderName + "/disconnected",
                         resourceLocation(folderName, folderName),
                         resourceLocation(folderName, folderName),
                         resourceLocation(folderName, "cutouts/disconnected")
                     );
                 } else {
                     ModelFile model = models.createCubeAllCutoutModel(
-                        "block/" + folderName + "/" + color,
+                        blockPath+ folderName + "/" + color,
                         resourceLocation(folderName, folderName),
                         resourceLocation(folderName, folderName),
                         resourceLocation(folderName, "cutouts/" + color)
@@ -173,7 +182,7 @@ public class BlockModelGenerator extends BlockStateProvider {
             models.anyDirectionalRSBlock(block, state -> {
                 if (Boolean.FALSE.equals(state.getValue(NetworkNodeBlock.CONNECTED))) {
                     return models.createCubeCutoutModel(
-                        "block/" + folderName + "/disconnected",
+                        blockPath+ folderName + "/disconnected",
                         BOTTOM,
                         BOTTOM,
                         resourceLocation(folderName, "top"),
@@ -189,7 +198,7 @@ public class BlockModelGenerator extends BlockStateProvider {
                     );
                 } else {
                     ModelFile model = models.createCubeCutoutModel(
-                        "block/" + folderName + "/" + color,
+                        blockPath+ folderName + "/" + color,
                         BOTTOM,
                         BOTTOM,
                         resourceLocation(folderName, "top"),
@@ -219,14 +228,14 @@ public class BlockModelGenerator extends BlockStateProvider {
             models.simpleBlockStateModel(block, state -> {
                 if (state.getValue(ControllerBlock.ENERGY_TYPE).equals(ControllerBlock.EnergyType.OFF)) {
                     return models.createCubeAllCutoutModel(
-                        "block/" + folderName + "/off",
+                        blockPath+ folderName + "/off",
                         resourceLocation(folderName, "off"),
                         resourceLocation(folderName, "off"),
                         resourceLocation(folderName, "cutouts/off")
                     );
                 } else if (state.getValue(ControllerBlock.ENERGY_TYPE).equals(ControllerBlock.EnergyType.NEARLY_OFF)) {
                     return models.createControllerNearlyCutoutModel(
-                        "block/" + folderName + "/nearly_off",
+                        blockPath+ folderName + "/nearly_off",
                         resourceLocation(folderName, "off"),
                         resourceLocation(folderName, "on"),
                         resourceLocation(folderName, "cutouts/nearly_off"),
@@ -234,7 +243,7 @@ public class BlockModelGenerator extends BlockStateProvider {
                     );
                 } else if (state.getValue(ControllerBlock.ENERGY_TYPE).equals(ControllerBlock.EnergyType.NEARLY_ON)) {
                     return models.createControllerNearlyCutoutModel(
-                        "block/" + folderName + "/nearly_on",
+                        blockPath+ folderName + "/nearly_on",
                         resourceLocation(folderName, "off"),
                         resourceLocation(folderName, "on"),
                         resourceLocation(folderName, "cutouts/nearly_on"),
@@ -242,10 +251,55 @@ public class BlockModelGenerator extends BlockStateProvider {
                     );
                 } else {
                     ModelFile model = models.createCubeAllCutoutModel(
-                        "block/" + folderName + "/" + color,
+                        blockPath+ folderName + "/" + color,
                         resourceLocation(folderName, "off"),
                         resourceLocation(folderName, "on"),
                         resourceLocation(folderName, "cutouts/" + color)
+                    );
+
+                    simpleBlockItem(block, model);
+                    return model;
+                }
+            });
+        });
+    }
+
+    // AI
+    private <T extends Block> void genAIControllerModels(ColorMap<T> blockMap) {
+        blockMap.forEach((color, registryObject) -> {
+            Block block = registryObject.get();
+            String folderName = RSBlocks.AI_CONTROLLER.get(ColorMap.DEFAULT_COLOR).getId().getPath();
+
+            models.simpleBlockStateModel(block, state -> {
+                if (state.getValue(AIControllerBlock.ENERGY_TYPE).equals(ControllerBlock.EnergyType.OFF)) {
+                    return models.createCubeAllCutoutModel(
+                            blockPath+ folderName + "/off",
+                            resourceLocation(folderName, "off"),
+                            resourceLocation(folderName, "off"),
+                            resourceLocation(folderName, "cutouts/off")
+                    );
+                } else if (state.getValue(AIControllerBlock.ENERGY_TYPE).equals(ControllerBlock.EnergyType.NEARLY_OFF)) {
+                    return models.createAIControllerNearlyCutoutModel(
+                            blockPath+ folderName + "/nearly_off",
+                            resourceLocation(folderName, "off"),
+                            resourceLocation(folderName, "on"),
+                            resourceLocation(folderName, "cutouts/nearly_off"),
+                            resourceLocation(folderName, "cutouts/nearly_off_gray")
+                    );
+                } else if (state.getValue(AIControllerBlock.ENERGY_TYPE).equals(ControllerBlock.EnergyType.NEARLY_ON)) {
+                    return models.createAIControllerNearlyCutoutModel(
+                            blockPath+ folderName + "/nearly_on",
+                            resourceLocation(folderName, "off"),
+                            resourceLocation(folderName, "on"),
+                            resourceLocation(folderName, "cutouts/nearly_on"),
+                            resourceLocation(folderName, "cutouts/nearly_on_gray")
+                    );
+                } else {
+                    ModelFile model = models.createCubeAllCutoutModel(
+                            blockPath+ folderName + "/" + color,
+                            resourceLocation(folderName, "off"),
+                            resourceLocation(folderName, "on"),
+                            resourceLocation(folderName, "cutouts/" + color)
                     );
 
                     simpleBlockItem(block, model);
@@ -261,7 +315,7 @@ public class BlockModelGenerator extends BlockStateProvider {
             String folderName = blockMap.get(ColorMap.DEFAULT_COLOR).getId().getPath();
 
             ModelFile disconnected = models.createCubeNorthCutoutModel(
-                "block/" + folderName + "/disconnected",
+                blockPath+ folderName + "/disconnected",
                 BOTTOM,
                 resourceLocation(folderName, "top"),
                 resourceLocation(folderName, "front"),
@@ -272,7 +326,7 @@ public class BlockModelGenerator extends BlockStateProvider {
                 resourceLocation(folderName, "cutouts/disconnected")
             );
             ModelFile connected = models.createCubeNorthCutoutModel(
-                "block/" + folderName + "/" + color,
+                blockPath+ folderName + "/" + color,
                 BOTTOM,
                 resourceLocation(folderName, "top"),
                 resourceLocation(folderName, "front"),

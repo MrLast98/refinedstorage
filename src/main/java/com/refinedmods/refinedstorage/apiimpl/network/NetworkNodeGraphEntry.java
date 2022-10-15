@@ -17,14 +17,12 @@ public class NetworkNodeGraphEntry implements INetworkNodeGraphEntry {
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof NetworkNodeGraphEntry)) {
+        if (!(other instanceof NetworkNodeGraphEntry otherItem)) {
             return false;
         }
         if (this == other) {
             return true;
         }
-
-        NetworkNodeGraphEntry otherItem = (NetworkNodeGraphEntry) other;
 
         if (node.getLevel().dimension() != otherItem.node.getLevel().dimension()) {
             return false;

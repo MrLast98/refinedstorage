@@ -80,6 +80,10 @@ public final class RSItems {
     public static final ColorMap<BlockItem> CRAFTING_MONITOR = new ColorMap<>(ITEMS, LATE_REGISTRATION);
     public static final ColorMap<BlockItem> DETECTOR = new ColorMap<>(ITEMS, LATE_REGISTRATION);
 
+    // AI
+    public static final ColorMap<BlockItem> AI_CONTROLLER = new ColorMap<>(ITEMS, LATE_REGISTRATION);
+
+
     static {
         CONSTRUCTION_CORE = ITEMS.register("construction_core", CoreItem::new);
         DESTRUCTION_CORE = ITEMS.register("destruction_core", CoreItem::new);
@@ -163,6 +167,16 @@ public final class RSItems {
             )
         ));
 
+        // AI
+        AI_CONTROLLER.put(ColorMap.DEFAULT_COLOR, ITEMS.register(
+                RSBlocks.AI_CONTROLLER.get(ColorMap.DEFAULT_COLOR).getId().getPath(),
+                () -> new AIControllerBlockItem(
+                        RSBlocks.AI_CONTROLLER.get(ColorMap.DEFAULT_COLOR).get(),
+                        ColorMap.DEFAULT_COLOR,
+                        BlockUtils.getBlockTranslation(RSBlocks.CONTROLLER.get(ColorMap.DEFAULT_COLOR).get())
+                )
+        ));
+
         COLORED_ITEM_TAGS.put(ItemTags.create(new ResourceLocation(RS.ID, CONTROLLER.get(ColorMap.DEFAULT_COLOR).getId().getPath())), CONTROLLER);
 
         LATE_REGISTRATION.add(() -> {
@@ -175,6 +189,13 @@ public final class RSItems {
             RSBlocks.CREATIVE_CONTROLLER.forEach((color, block) -> {
                 if (color != ColorMap.DEFAULT_COLOR) {
                     CREATIVE_CONTROLLER.put(color, ITEMS.register(RSBlocks.CREATIVE_CONTROLLER.get(color).getId().getPath(), () -> new ControllerBlockItem(RSBlocks.CREATIVE_CONTROLLER.get(color).get(), color, Component.translatable(RSBlocks.CREATIVE_CONTROLLER.get(ColorMap.DEFAULT_COLOR).get().getDescriptionId()))));
+                }
+            });
+
+            // AI
+            RSBlocks.AI_CONTROLLER.forEach((color, block) -> {
+                if (color != ColorMap.DEFAULT_COLOR) {
+                    AI_CONTROLLER.put(color, ITEMS.register(RSBlocks.AI_CONTROLLER.get(color).getId().getPath(), () -> new AIControllerBlockItem(RSBlocks.AI_CONTROLLER.get(color).get(), color, Component.translatable(RSBlocks.AI_CONTROLLER.get(ColorMap.DEFAULT_COLOR).get().getDescriptionId()))));
                 }
             });
         });

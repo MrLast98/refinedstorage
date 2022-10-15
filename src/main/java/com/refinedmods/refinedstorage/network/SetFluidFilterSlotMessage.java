@@ -55,7 +55,7 @@ public class SetFluidFilterSlotMessage {
     private static void handle(SetFluidFilterSlotMessage message, AbstractContainerMenu container) {
         Slot slot = container.getSlot(message.containerSlot);
 
-        if (slot instanceof FluidFilterSlot) {
+        if (slot instanceof FluidFilterSlot fluidSlot) {
             Runnable postAction = () -> {
             };
 
@@ -71,8 +71,6 @@ public class SetFluidFilterSlotMessage {
                     };
                 }
             }
-
-            FluidFilterSlot fluidSlot = (FluidFilterSlot) slot;
 
             fluidSlot.getFluidInventory().setFluid(slot.getSlotIndex(), message.stack);
             postAction.run();

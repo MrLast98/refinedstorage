@@ -37,9 +37,12 @@ public class ServerConfig {
     private final WirelessCraftingMonitor wirelessCraftingMonitor;
     private final Autocrafting autocrafting;
 
+    // AI
+    private final AIController aiController;
+
     public ServerConfig() {
         upgrades = new Upgrades();
-        controller = new Controller();
+        controller = new  Controller();
         cable = new Cable();
         grid = new Grid();
         diskDrive = new DiskDrive();
@@ -69,7 +72,50 @@ public class ServerConfig {
         wirelessCraftingMonitor = new WirelessCraftingMonitor();
         autocrafting = new Autocrafting();
 
+        // AI
+        aiController = new AIController();
+
         spec = builder.build();
+    }
+
+
+    // AI
+    public class AIController {
+        private final ForgeConfigSpec.BooleanValue useEnergy;
+        private final ForgeConfigSpec.IntValue capacity;
+        private final ForgeConfigSpec.IntValue baseUsage;
+        private final ForgeConfigSpec.IntValue maxTransfer;
+
+        public AIController() {
+            builder.push("ai_controller");
+
+            useEnergy = builder.comment("Whether the Controller uses energy").define("useEnergy", true);
+            capacity = builder.comment("The energy capacity of the Controller").defineInRange("capacity", 64000, 0, Integer.MAX_VALUE);
+            baseUsage = builder.comment("The base energy used by the Controller").defineInRange("baseUsage", 0, 0, Integer.MAX_VALUE);
+            maxTransfer = builder.comment("The maximum energy that the Controller can receive").defineInRange("maxTransfer", Integer.MAX_VALUE, 0, Integer.MAX_VALUE);
+
+            builder.pop();
+        }
+
+        public boolean getUseEnergy() {
+            return useEnergy.get();
+        }
+
+        public int getCapacity() {
+            return capacity.get();
+        }
+
+        public int getBaseUsage() {
+            return baseUsage.get();
+        }
+
+        public int getMaxTransfer() {
+            return maxTransfer.get();
+        }
+    }
+
+    public AIController getAIController() { 
+        return aiController;
     }
 
     public ForgeConfigSpec getSpec() {

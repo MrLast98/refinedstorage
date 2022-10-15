@@ -57,7 +57,10 @@ public class BlockEntityTagGenerator extends TagsProvider<BlockEntityType<?>> {
                 RSBlockEntities.CREATIVE_PORTABLE_GRID.get(),
                 RSBlockEntities.CRAFTER.get(),
                 RSBlockEntities.CRAFTER_MANAGER.get(),
-                RSBlockEntities.CRAFTING_MONITOR.get()
+                RSBlockEntities.CRAFTING_MONITOR.get(),
+
+                // AI
+                RSBlockEntities.AI_CONTROLLER.get()
         );
     }
 

@@ -31,11 +31,10 @@ public class NetworkItemManager implements INetworkItemManager {
         for (INetworkNodeGraphEntry entry : network.getNodeGraph().all()) {
             INetworkNode node = entry.getNode();
 
-            if (node instanceof IWirelessTransmitter &&
+            if (node instanceof IWirelessTransmitter transmitter &&
                 network.canRun() &&
                 node.isActive() &&
                 ((IWirelessTransmitter) node).getDimension() == player.getCommandSenderWorld().dimension()) {
-                IWirelessTransmitter transmitter = (IWirelessTransmitter) node;
 
                 Vec3 pos = player.position();
 

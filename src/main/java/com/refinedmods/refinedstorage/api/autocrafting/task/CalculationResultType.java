@@ -23,5 +23,5 @@ public enum CalculationResultType {
     /**
      * When one of the used patterns during the calculation reuses itself again and would cause an infinite loop.
      */
-    RECURSIVE;
+    RECURSIVE
 }

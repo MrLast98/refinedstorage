@@ -4,8 +4,8 @@ import net.minecraft.world.item.ItemStack;
 
 public class Cover {
 
-    private ItemStack stack;
-    private CoverType type;
+    private final ItemStack stack;
+    private final CoverType type;
 
     public Cover(ItemStack stack, CoverType type) {
         this.stack = stack;

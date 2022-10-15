@@ -49,8 +49,7 @@ public class SecurityManager implements ISecurityManager {
         this.globalCard = null;
 
         for (INetworkNodeGraphEntry entry : network.getNodeGraph().all()) {
-            if (entry.getNode() instanceof ISecurityCardContainer && entry.getNode().isActive()) {
-                ISecurityCardContainer container = (ISecurityCardContainer) entry.getNode();
+            if (entry.getNode() instanceof ISecurityCardContainer container && entry.getNode().isActive()) {
 
                 for (ISecurityCard card : container.getCards()) {
                     if (card.getOwner() == null) {

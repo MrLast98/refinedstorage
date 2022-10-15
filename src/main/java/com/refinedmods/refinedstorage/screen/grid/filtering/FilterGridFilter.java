@@ -31,8 +31,7 @@ public class FilterGridFilter implements Predicate<IGridStack> {
         for (IFilter filter : filters) {
             lastMode = filter.getMode();
 
-            if (stack instanceof ItemGridStack && filter.getStack() instanceof ItemStack) {
-                ItemStack stackInFilter = (ItemStack) filter.getStack();
+            if (stack instanceof ItemGridStack && filter.getStack() instanceof ItemStack stackInFilter) {
 
                 if (filter.isModFilter()) {
                     String stackModId = stack.getModId();
@@ -44,8 +43,7 @@ public class FilterGridFilter implements Predicate<IGridStack> {
                 } else if (API.instance().getComparer().isEqual(((ItemGridStack) stack).getStack(), stackInFilter, filter.getCompare())) {
                     return filter.getMode() == IFilter.MODE_WHITELIST;
                 }
-            } else if (stack instanceof FluidGridStack && filter.getStack() instanceof FluidStack) {
-                FluidStack stackInFilter = (FluidStack) filter.getStack();
+            } else if (stack instanceof FluidGridStack && filter.getStack() instanceof FluidStack stackInFilter) {
 
                 if (filter.isModFilter()) {
                     ResourceLocation stackInFilterRegistryName = ForgeRegistries.FLUIDS.getKey(stackInFilter.getFluid());

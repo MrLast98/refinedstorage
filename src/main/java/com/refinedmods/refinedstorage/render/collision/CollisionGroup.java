@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CollisionGroup {
 
-    private List<AABB> items = new ArrayList<>();
+    private final List<AABB> items = new ArrayList<>();
     private boolean canAccessGui;
     @Nullable
     private Direction direction;

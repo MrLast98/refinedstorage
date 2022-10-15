@@ -47,6 +47,10 @@ public final class RSBlocks {
     public static final ColorMap<ControllerBlock> CONTROLLER = new ColorMap<>(BLOCKS);
     public static final ColorMap<ControllerBlock> CREATIVE_CONTROLLER = new ColorMap<>(BLOCKS);
     public static final ColorMap<GridBlock> GRID = new ColorMap<>(BLOCKS);
+
+    // AI
+    public static final ColorMap<AIControllerBlock> AI_CONTROLLER = new ColorMap<>(BLOCKS);
+
     public static final ColorMap<GridBlock> CRAFTING_GRID = new ColorMap<>(BLOCKS);
     public static final ColorMap<GridBlock> PATTERN_GRID = new ColorMap<>(BLOCKS);
     public static final ColorMap<GridBlock> FLUID_GRID = new ColorMap<>(BLOCKS);
@@ -98,6 +102,10 @@ public final class RSBlocks {
         CRAFTER_MANAGER.registerBlocks("crafter_manager", CrafterManagerBlock::new);
         CRAFTING_MONITOR.registerBlocks("crafting_monitor", CraftingMonitorBlock::new);
         DETECTOR.registerBlocks("detector", DetectorBlock::new);
+
+        //  AI
+        AI_CONTROLLER.registerBlocks("ai_controller", () -> new AIControllerBlock(NetworkType.NORMAL));
+
     }
 
     private RSBlocks() {

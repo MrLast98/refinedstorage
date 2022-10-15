@@ -17,8 +17,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 public class NetworkNodeListener {
     @SubscribeEvent
     public void onBlockPlace(BlockEvent.EntityPlaceEvent e) {
-        if (!e.getLevel().isClientSide() && e.getEntity() instanceof Player) {
-            Player player = (Player) e.getEntity();
+        if (!e.getLevel().isClientSide() && e.getEntity() instanceof Player player) {
 
             INetworkNode placed = NetworkUtils.getNodeFromBlockEntity(e.getLevel().getBlockEntity(e.getPos()));
 

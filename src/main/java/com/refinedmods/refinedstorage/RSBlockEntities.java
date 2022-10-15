@@ -97,6 +97,9 @@ public final class RSBlockEntities {
     public static final RegistryObject<BlockEntityType<CraftingMonitorBlockEntity>> CRAFTING_MONITOR =
         REGISTRY.register("crafting_monitor", () -> registerSynchronizationParameters(CraftingMonitorBlockEntity.SPEC, BlockEntityType.Builder.of(CraftingMonitorBlockEntity::new, RSBlocks.CRAFTING_MONITOR.getBlocks()).build(null)));
 
+    // AI
+    public static final RegistryObject<BlockEntityType<AIControllerBlockEntity>> AI_CONTROLLER =
+            REGISTRY.register("ai_controller", () -> registerSynchronizationParameters(AIControllerBlockEntity.SPEC, BlockEntityType.Builder.of((pos, state) -> new AIControllerBlockEntity(NetworkType.NORMAL, pos, state), RSBlocks.AI_CONTROLLER.getBlocks()).build(null)));
     private static <T extends BlockEntity> BlockEntityType<T> registerSynchronizationParameters(BlockEntitySynchronizationSpec spec, BlockEntityType<T> t) {
         spec.getParameters().forEach(BlockEntitySynchronizationManager::registerParameter);
         return t;

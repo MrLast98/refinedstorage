@@ -37,6 +37,8 @@ public final class RSContainerMenus {
     public static final RegistryObject<MenuType<CraftingMonitorContainerMenu>> CRAFTING_MONITOR = REGISTRY.register("crafting_monitor", () -> IForgeMenuType.create(new CraftingMonitorContainerFactory()));
     public static final RegistryObject<MenuType<CraftingMonitorContainerMenu>> WIRELESS_CRAFTING_MONITOR = REGISTRY.register("wireless_crafting_monitor", () -> IForgeMenuType.create(new WirelessCraftingMonitorContainerFactory()));
 
+    // AI
+    public static final RegistryObject<MenuType<AIControllerContainerMenu>> AI_CONTROLLER = REGISTRY.register("ai_controller", () -> IForgeMenuType.create(((windowId, inv, data) -> new AIControllerContainerMenu(null, inv.player, windowId))));
     private RSContainerMenus() {
     }
 }

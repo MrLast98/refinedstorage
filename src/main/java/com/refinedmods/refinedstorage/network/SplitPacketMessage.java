@@ -14,11 +14,11 @@ public class SplitPacketMessage {
     /**
      * Internal communication id. Used to indicate to what wrapped message this belongs to.
      */
-    private int communicationId;
+    private final int communicationId;
     /**
      * The index of the split message in the wrapped message.
      */
-    private int packetIndex;
+    private final int packetIndex;
 
     public SplitPacketMessage(final int communicationId, final int packetIndex, final byte[] payload) {
         this.communicationId = communicationId;

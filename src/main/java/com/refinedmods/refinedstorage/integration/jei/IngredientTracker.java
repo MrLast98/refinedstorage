@@ -22,7 +22,7 @@ import java.util.*;
 public class IngredientTracker {
     private final List<Ingredient> ingredients = new ArrayList<>();
     private final Map<ResourceLocation, Integer> storedItems = new HashMap<>();
-    private boolean doTransfer;
+    private final boolean doTransfer;
 
     public IngredientTracker(IRecipeSlotsView recipeLayout, boolean doTransfer) {
         for (IRecipeSlotView slotView : recipeLayout.getSlotViews(RecipeIngredientRole.INPUT)) {

@@ -119,6 +119,15 @@ public class BlockModels {
             .texture("cutout", cutout);
     }
 
+    // AI
+    public BlockModelBuilder createAIControllerNearlyCutoutModel(String name, ResourceLocation particle, ResourceLocation all, ResourceLocation grayCutout, ResourceLocation cutout) {
+        return generator.models().withExistingParent(name, new ResourceLocation(RS.ID, "block/ai_controller_nearly"))
+                .texture("particle", particle)
+                .texture("all", all)
+                .texture("cutout_gray", grayCutout)
+                .texture("cutout", cutout);
+    }
+
     public BlockModelBuilder createCubeAllCutoutModel(String name, ResourceLocation particle, ResourceLocation all, ResourceLocation cutout) {
         return generator.models().withExistingParent(name, new ResourceLocation(RS.ID, "cube_all_cutout"))
             .texture("particle", particle)

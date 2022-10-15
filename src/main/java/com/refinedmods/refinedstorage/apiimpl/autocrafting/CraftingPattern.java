@@ -157,11 +157,9 @@ public class CraftingPattern implements ICraftingPattern {
 
     @Override
     public boolean equals(Object otherObj) {
-        if (!(otherObj instanceof ICraftingPattern)) {
+        if (!(otherObj instanceof ICraftingPattern other)) {
             return false;
         }
-
-        ICraftingPattern other = (ICraftingPattern) otherObj;
 
         if (other.isProcessing() != processing) {
             return false;

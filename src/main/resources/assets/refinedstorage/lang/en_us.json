@@ -91,6 +91,9 @@
   "gui.refinedstorage.jei.transfer.autocrafting_available": "Autocrafting available",
   "gui.refinedstorage.jei.transfer.request_autocrafting": "CTRL + CLICK to request autocrafting",
   "gui.refinedstorage.jei.transfer.request_autocrafting_mac": "CMD + CLICK to request autocrafting",
+
+  "gui.refinedstorage.ai_controller": "AI Controller",
+
   "misc.refinedstorage.energy_stored": "%d / %d FE",
   "misc.refinedstorage.energy_usage": "Usage: %d FE/t",
   "misc.refinedstorage.energy_usage_minimal": "%d FE/t",
@@ -247,6 +250,8 @@
   "block.refinedstorage.creative_portable_grid": "Creative Portable Grid",
   "block.refinedstorage.portable_grid.tooltip": "Sneak to place in the world.",
   "block.refinedstorage.crafter_manager": "Crafter Manager",
+
+  "block.refinedstorage.ai_controller": "AI Controller",
   "item.refinedstorage.1k_storage_disk": "1k Storage Disk",
   "item.refinedstorage.4k_storage_disk": "4k Storage Disk",
   "item.refinedstorage.16k_storage_disk": "16k Storage Disk",
@@ -372,5 +377,5 @@
   "advancements.refinedstorage.interface_to_the_world": "Interface to the world",
   "advancements.refinedstorage.interface_to_the_world.description": "Export and import items at the same time with an Interface",
   "advancements.refinedstorage.storing_externally": "Storing externally",
-  "advancements.refinedstorage.storing_externally.description": "Use an External Storage to provide the network with storage from an external block like a chest"
+  "advancements.refinedstorage.storing_externally.description": "Use an External Storage to provide the network with storage from an external block like a chest",
 }

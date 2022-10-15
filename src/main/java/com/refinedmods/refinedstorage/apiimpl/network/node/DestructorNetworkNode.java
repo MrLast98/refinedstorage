@@ -191,8 +191,7 @@ public class DestructorNetworkNode extends NetworkNode implements IComparable, I
                     level.setBlock(front, Blocks.AIR.defaultBlockState(), 11);
                 }
             }
-        } else if (frontBlock instanceof IFluidBlock) {
-            IFluidBlock fluidBlock = (IFluidBlock) frontBlock;
+        } else if (frontBlock instanceof IFluidBlock fluidBlock) {
 
             if (fluidBlock.canDrain(level, front)) {
                 FluidStack simulatedDrain = fluidBlock.drain(level, front, IFluidHandler.FluidAction.SIMULATE);

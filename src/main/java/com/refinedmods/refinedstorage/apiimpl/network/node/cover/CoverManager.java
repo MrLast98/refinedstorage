@@ -27,8 +27,8 @@ public class CoverManager {
     private static final String NBT_ITEM = "Item";
     private static final String NBT_TYPE = "Type";
     public static String NBT_COVER_MANAGER = "Cover";
-    private Map<Direction, Cover> covers = new HashMap<>();
-    private NetworkNode node;
+    private final Map<Direction, Cover> covers = new HashMap<>();
+    private final NetworkNode node;
 
     public CoverManager(NetworkNode node) {
         this.node = node;

@@ -15,6 +15,8 @@ public final class RSLootFunctions {
     public static final RegistryObject<LootItemFunctionType> PORTABLE_GRID;
     public static final RegistryObject<LootItemFunctionType> CRAFTER;
     public static final RegistryObject<LootItemFunctionType> CONTROLLER;
+    public static final RegistryObject<LootItemFunctionType> AI_CONTROLLER;
+
 
     private static final DeferredRegister<LootItemFunctionType> LOOT_ITEM_FUNCTIONS = DeferredRegister.create(Registry.LOOT_FUNCTION_REGISTRY, RS.ID);
 
@@ -23,6 +25,10 @@ public final class RSLootFunctions {
         PORTABLE_GRID = LOOT_ITEM_FUNCTIONS.register("portable_grid", () -> new LootItemFunctionType(new PortableGridBlockLootFunction.Serializer()));
         CRAFTER = LOOT_ITEM_FUNCTIONS.register("crafter", () -> new LootItemFunctionType(new CrafterLootFunction.Serializer()));
         CONTROLLER = LOOT_ITEM_FUNCTIONS.register("controller", () -> new LootItemFunctionType(new ControllerLootFunction.Serializer()));
+        
+        // AI
+        AI_CONTROLLER = LOOT_ITEM_FUNCTIONS.register("ai_controller", () -> new LootItemFunctionType(new ControllerLootFunction.Serializer()));
+
     }
 
     private RSLootFunctions() {

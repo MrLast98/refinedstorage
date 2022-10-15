@@ -246,8 +246,7 @@ public class AlternativesScreen extends BaseScreen<AlternativesContainerMenu> {
         Set<ResourceLocation> allowed = new HashSet<>();
 
         for (Line line : lines) {
-            if (line instanceof TagLine) {
-                TagLine tagLine = (TagLine) line;
+            if (line instanceof TagLine tagLine) {
 
                 if (tagLine.widget.selected()) {
                     allowed.add(tagLine.tagName);

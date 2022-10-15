@@ -29,7 +29,9 @@ import com.refinedmods.refinedstorage.apiimpl.storage.cache.FluidStorageCache;
 import com.refinedmods.refinedstorage.apiimpl.storage.cache.ItemStorageCache;
 import com.refinedmods.refinedstorage.apiimpl.storage.tracker.FluidStorageTracker;
 import com.refinedmods.refinedstorage.apiimpl.storage.tracker.ItemStorageTracker;
+import com.refinedmods.refinedstorage.block.AIControllerBlock;
 import com.refinedmods.refinedstorage.block.ControllerBlock;
+import com.refinedmods.refinedstorage.blockentity.AIControllerBlockEntity;
 import com.refinedmods.refinedstorage.energy.BaseEnergyStorage;
 import com.refinedmods.refinedstorage.blockentity.ControllerBlockEntity;
 import com.refinedmods.refinedstorage.blockentity.config.IRedstoneConfigurable;
@@ -90,7 +92,7 @@ public class Network implements INetwork, IRedstoneConfigurable {
     private boolean couldRun;
     private int ticksSinceUpdateChanged;
     private int ticks;
-    private long[] tickTimes = new long[100];
+    private final long[] tickTimes = new long[100];
     private int tickCounter = 0;
 
     public Network(Level level, BlockPos pos, NetworkType type) {
@@ -103,6 +105,8 @@ public class Network implements INetwork, IRedstoneConfigurable {
 
             if (blockEntity instanceof ControllerBlockEntity) {
                 ((ControllerBlockEntity) blockEntity).getDataManager().sendParameterToWatchers(ControllerBlockEntity.NODES);
+            } else if (blockEntity instanceof AIControllerBlockEntity) {
+                ((AIControllerBlockEntity) blockEntity).getDataManager().sendParameterToWatchers(AIControllerBlockEntity.NODES);
             }
         });
     }
@@ -184,6 +188,8 @@ public class Network implements INetwork, IRedstoneConfigurable {
             if (type == NetworkType.NORMAL) {
                 if (!RS.SERVER_CONFIG.getController().getUseEnergy()) {
                     energy.setStored(this.energy.getMaxEnergyStored());
+                } else if (!RS.SERVER_CONFIG.getAIController().getUseEnergy()){
+                    energy.setStored(this.energy.getMaxEnergyStored());
                 } else {
                     energy.extractEnergyBypassCanExtract(getEnergyUsage(), false);
                 }
@@ -211,13 +217,14 @@ public class Network implements INetwork, IRedstoneConfigurable {
             }
 
             ControllerBlock.EnergyType energyType = getEnergyType();
-
             if (lastEnergyType != energyType) {
                 lastEnergyType = energyType;
 
                 BlockState state = level.getBlockState(pos);
                 if (state.getBlock() instanceof ControllerBlock) {
                     level.setBlockAndUpdate(pos, state.setValue(ControllerBlock.ENERGY_TYPE, energyType));
+                } else if (state.getBlock() instanceof AIControllerBlock) {
+                    level.setBlockAndUpdate(pos, state.setValue(AIControllerBlock.ENERGY_TYPE, energyType));
                 }
             }
 
@@ -563,6 +570,8 @@ public class Network implements INetwork, IRedstoneConfigurable {
 
         return getEnergyType(this.energy.getEnergyStored(), this.energy.getMaxEnergyStored());
     }
+
+    
 
     @Override
     public RedstoneMode getRedstoneMode() {

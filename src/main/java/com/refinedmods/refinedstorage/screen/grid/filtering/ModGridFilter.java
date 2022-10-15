@@ -24,9 +24,7 @@ public class ModGridFilter implements Predicate<IGridStack> {
             if (modName != null) {
                 modName = standardify(modName);
 
-                if (modName.contains(inputModName)) {
-                    return true;
-                }
+                return modName.contains(inputModName);
             }
         }
 

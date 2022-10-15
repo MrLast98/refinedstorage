@@ -40,8 +40,8 @@ public class GridContainerMenu extends BaseContainerMenu implements ICraftingGri
 
     private ResultCraftingGridSlot craftingResultSlot;
     private LegacyBaseSlot patternResultSlot;
-    private List<Slot> itemPatternSlots = new ArrayList<>();
-    private List<Slot> fluidPatternSlots = new ArrayList<>();
+    private final List<Slot> itemPatternSlots = new ArrayList<>();
+    private final List<Slot> fluidPatternSlots = new ArrayList<>();
     private int patternScrollOffset;
 
     public GridContainerMenu(IGrid grid, @Nullable BaseBlockEntity blockEntity, Player player, int windowId) {

@@ -122,8 +122,7 @@ public class CraftingCalculator {
             for (ItemStack byproduct : pattern.getByproducts(inputs.getRecipe())) {
                 results.add(byproduct, byproduct.getCount() * qty);
             }
-        } else if (node instanceof ProcessingNode) {
-            ProcessingNode processing = (ProcessingNode) node;
+        } else if (node instanceof ProcessingNode processing) {
 
             calculateForFluids(qty, storageSource, fluidStorageSource, results, fluidResults, inputs, fluidsToExtract, processing);
 

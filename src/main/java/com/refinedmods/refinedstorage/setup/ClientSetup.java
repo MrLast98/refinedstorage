@@ -107,6 +107,10 @@ public final class ClientSetup {
             MenuScreens.register(RSContainerMenus.CRAFTER_MANAGER.get(), new CrafterManagerScreenFactory());
             MenuScreens.register(RSContainerMenus.CRAFTING_MONITOR.get(), CraftingMonitorScreen::new);
             MenuScreens.register(RSContainerMenus.WIRELESS_CRAFTING_MONITOR.get(), CraftingMonitorScreen::new);
+
+            // AI
+            MenuScreens.register(RSContainerMenus.AI_CONTROLLER.get(), AIControllerScreen::new);
+
         });
 
         BlockEntityRenderers.register(RSBlockEntities.STORAGE_MONITOR.get(), ctx -> new StorageMonitorBlockEntityRenderer());
@@ -117,6 +121,9 @@ public final class ClientSetup {
 
             RSItems.CONTROLLER.values().forEach(controller -> ItemProperties.register(controller.get(), new ResourceLocation("energy_type"), new ControllerItemPropertyGetter()));
             RSItems.CREATIVE_CONTROLLER.values().forEach(controller -> ItemProperties.register(controller.get(), new ResourceLocation("energy_type"), new ControllerItemPropertyGetter()));
+
+            // AI
+            RSItems.AI_CONTROLLER.values().forEach(controller -> ItemProperties.register(controller.get(), new ResourceLocation("energy_type"), new ControllerItemPropertyGetter()));
 
             ItemProperties.register(RSItems.WIRELESS_CRAFTING_MONITOR.get(), CONNECTED, new NetworkItemPropertyGetter());
             ItemProperties.register(RSItems.CREATIVE_WIRELESS_CRAFTING_MONITOR.get(), CONNECTED, new NetworkItemPropertyGetter());

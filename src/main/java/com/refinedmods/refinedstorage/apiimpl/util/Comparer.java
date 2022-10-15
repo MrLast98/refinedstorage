@@ -21,11 +21,7 @@ public class Comparer implements IComparer {
             return false;
         }
 
-        if ((flags & COMPARE_QUANTITY) == COMPARE_QUANTITY && left.getCount() != right.getCount()) {
-            return false;
-        }
-
-        return true;
+        return (flags & COMPARE_QUANTITY) != COMPARE_QUANTITY || left.getCount() == right.getCount();
     }
 
     @Override
@@ -42,10 +38,6 @@ public class Comparer implements IComparer {
             return false;
         }
 
-        if ((flags & COMPARE_QUANTITY) == COMPARE_QUANTITY && left.getAmount() != right.getAmount()) {
-            return false;
-        }
-
-        return true;
+        return (flags & COMPARE_QUANTITY) != COMPARE_QUANTITY || left.getAmount() == right.getAmount();
     }
 }
